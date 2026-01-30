@@ -1,0 +1,12 @@
+operator,category,is_llm,selection_count,success_count,success_rate,improvement_count,improvement_rate,total_reward,avg_reward,learned_q
+DeleteStatement,statement,false,18,11,0.611111,1,0.055556,2737.727054,152.095947,152.095947
+CopyStatement,statement,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+ReplaceStatement,statement,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+SwapStatement,statement,false,1,1,1.000000,0,0.000000,0.000367,0.000367,0.000367
+MoveStatement,statement,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+MatchedDeleteStatement,matched,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+MatchedCopyStatement,matched,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+MatchedReplaceStatement,matched,false,1,1,1.000000,0,0.000000,0.000364,0.000364,0.000364
+MatchedSwapStatement,matched,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+BinaryOperatorReplacement,modifynode,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
+UnaryOperatorReplacement,modifynode,false,0,0,0.000000,0,0.000000,0.000000,0.000000,0.000000
