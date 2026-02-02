@@ -36,6 +36,7 @@ public class ExperimentLogger implements Serializable {
     private long originalFitness;
     private long bestFitness;
     private String bestPatch;
+    private String fitnessUnit = "bytes";
 
     /**
      * Record for each step in the experiment.
@@ -111,6 +112,10 @@ public class ExperimentLogger implements Serializable {
         this.originalFitness = fitness;
         this.bestFitness = fitness;
         configuration.put("original_fitness", String.valueOf(fitness));
+    }
+
+    public void setFitnessUnit(String unit) {
+        this.fitnessUnit = unit;
     }
 
     /**
@@ -378,8 +383,8 @@ public class ExperimentLogger implements Serializable {
         System.out.printf("Improvements:     %d (%.1f%%)%n", improvements, 100.0 * improvements / totalSteps);
         System.out.printf("Total Reward:     %.2f%n", totalReward);
         System.out.printf("Avg Reward:       %.4f%n", totalReward / totalSteps);
-        System.out.printf("Original Fitness: %d ns%n", originalFitness);
-        System.out.printf("Best Fitness:     %d ns%n", bestFitness);
+        System.out.printf("Original Fitness: %d %s%n", originalFitness, fitnessUnit);
+        System.out.printf("Best Fitness:     %d %s%n", bestFitness, fitnessUnit);
         System.out.printf("Improvement:      %.2f%%%n", improvementPct);
         System.out.printf("Runtime:          %.1f s%n", (System.currentTimeMillis() - startTime) / 1000.0);
         System.out.println("=".repeat(60));

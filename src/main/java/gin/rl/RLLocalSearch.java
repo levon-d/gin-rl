@@ -92,6 +92,11 @@ public class RLLocalSearch implements Serializable {
     @Argument(alias = "pmin", description = "Minimum probability for probability matching")
     protected Double pMin = 0.05;
 
+    // ===== Fitness function =====
+
+    @Argument(alias = "ft", description = "Fitness type: runtime or memory")
+    protected String fitnessType = "memory";
+
     // ===== Operator space =====
 
     @Argument(alias = "ops", description = "Operator set: traditional, llm, all")
@@ -182,13 +187,31 @@ public class RLLocalSearch implements Serializable {
             experimentId != null ? experimentId : generateExperimentId(),
             outputDir
         );
+        this.logger.setFitnessUnit(getFitnessUnit());
 
         logConfiguration();
 
         Logger.info("RLLocalSearch initialized");
         Logger.info("  Algorithm: " + rlAlgorithm);
+        Logger.info("  Fitness: " + fitnessType);
         Logger.info("  Operators: " + operators.size() + " (" + operatorSet + ")");
         Logger.info("  Steps: " + numSteps);
+    }
+
+    /**
+     * Get fitness value from test results based on configured fitness type.
+     */
+    private long getFitness(UnitTestResultSet results) {
+        return fitnessType.equalsIgnoreCase("memory")
+            ? results.totalMemoryUsage()
+            : results.totalExecutionTime();
+    }
+
+    /**
+     * Get the unit string for the current fitness type.
+     */
+    private String getFitnessUnit() {
+        return fitnessType.equalsIgnoreCase("memory") ? "bytes" : "ns";
     }
 
     private String generateExperimentId() {
@@ -224,6 +247,7 @@ public class RLLocalSearch implements Serializable {
         logger.setConfiguration("rl_algorithm", rlAlgorithm);
         logger.setConfiguration("operator_set", operatorSet);
         logger.setConfiguration("num_operators", String.valueOf(operators.size()));
+        logger.setConfiguration("fitness_type", fitnessType);
 
         switch (rlAlgorithm.toLowerCase()) {
             case "epsilon_greedy", "epsilon-greedy", "egreedy" ->
@@ -263,10 +287,10 @@ public class RLLocalSearch implements Serializable {
             System.exit(1);
         }
 
-        long avgTime = resultSet.totalExecutionTime() / WARMUP_REPS;
-        Logger.info("Original execution time: " + avgTime + " ns");
+        long avgFitness = getFitness(resultSet) / WARMUP_REPS;
+        Logger.info("Original fitness: " + avgFitness + " " + getFitnessUnit());
 
-        return avgTime;
+        return avgFitness;
     }
 
     /**
@@ -277,11 +301,11 @@ public class RLLocalSearch implements Serializable {
         Logger.info("  File: " + filename);
         Logger.info("  Method: " + methodSignature);
 
-        long originalTime = warmup();
-        logger.setOriginalFitness(originalTime);
+        long originalFitness = warmup();
+        logger.setOriginalFitness(originalFitness);
 
         Patch bestPatch = new Patch(this.sourceFile);
-        long bestTime = originalTime;
+        long bestFitness = originalFitness;
 
         for (int step = 1; step <= numSteps; step++) {
             long stepStartTime = System.currentTimeMillis();
@@ -298,13 +322,13 @@ public class RLLocalSearch implements Serializable {
                            && results.getCleanCompile()
                            && results.allTestsSuccessful();
 
-            Long childFitness = success ? results.totalExecutionTime() : null;
-            double reward = calculateReward(bestTime, childFitness, success);
+            Long childFitness = success ? getFitness(results) : null;
+            double reward = calculateReward(bestFitness, childFitness, success);
 
-            operatorSelector.updateQuality(selectedOperator, bestTime, childFitness, success);
+            operatorSelector.updateQuality(selectedOperator, bestFitness, childFitness, success);
 
             long stepDuration = System.currentTimeMillis() - stepStartTime;
-            logger.logStep(step, selectedOperator, success, bestTime, childFitness,
+            logger.logStep(step, selectedOperator, success, bestFitness, childFitness,
                           reward, stepDuration, neighbour.toString());
 
             String msg;
@@ -314,23 +338,24 @@ public class RLLocalSearch implements Serializable {
                 msg = "Compilation failed";
             } else if (!results.allTestsSuccessful()) {
                 msg = "Tests failed";
-            } else if (childFitness >= bestTime) {
-                msg = String.format("No improvement (%d ns)", childFitness);
+            } else if (childFitness >= bestFitness) {
+                msg = String.format("No improvement (%d %s)", childFitness, getFitnessUnit());
             } else {
                 bestPatch = neighbour;
-                bestTime = childFitness;
-                msg = String.format("*** NEW BEST: %d ns (%.1f%% improvement) ***",
-                    bestTime, 100.0 * (originalTime - bestTime) / originalTime);
+                bestFitness = childFitness;
+                msg = String.format("*** NEW BEST: %d %s (%.1f%% improvement) ***",
+                    bestFitness, getFitnessUnit(), 100.0 * (originalFitness - bestFitness) / originalFitness);
             }
 
             Logger.info(String.format("  Result: %s, Reward: %.4f", msg, reward));
         }
 
-        double improvement = 100.0 * (originalTime - bestTime) / originalTime;
+        double improvement = 100.0 * (originalFitness - bestFitness) / originalFitness;
+        String unit = getFitnessUnit();
         Logger.info("=".repeat(60));
         Logger.info("Search complete!");
-        Logger.info(String.format("  Original: %d ns", originalTime));
-        Logger.info(String.format("  Best:     %d ns (%.1f%% improvement)", bestTime, improvement));
+        Logger.info(String.format("  Original: %d %s", originalFitness, unit));
+        Logger.info(String.format("  Best:     %d %s (%.1f%% improvement)", bestFitness, unit, improvement));
         Logger.info(String.format("  Patch:    %s", bestPatch));
         Logger.info("=".repeat(60));
 
@@ -346,7 +371,7 @@ public class RLLocalSearch implements Serializable {
             Logger.error("Failed to export results: " + e.getMessage());
         }
 
-        if (bestTime < originalTime) {
+        if (bestFitness < originalFitness) {
             String outputPath = sourceFile.getRelativePathToWorkingDir() + ".optimised";
             bestPatch.writePatchedSourceToFile(outputPath, null);
             Logger.info("Optimised source written to: " + outputPath);
@@ -405,6 +430,9 @@ public class RLLocalSearch implements Serializable {
         System.out.println("  -ucbc <value>  Exploration constant for UCB (default: sqrt(2))");
         System.out.println("  -alpha <value> Learning rate for policy gradient (default: 0.1)");
         System.out.println("  -pmin <value>  Minimum probability for probability matching (default: 0.05)");
+        System.out.println();
+        System.out.println("Fitness Options:");
+        System.out.println("  -ft <type>     Fitness type: runtime or memory (default: memory)");
         System.out.println();
         System.out.println("Operator Options:");
         System.out.println("  -ops <set>     Operators: traditional, llm, all (default: all)");
