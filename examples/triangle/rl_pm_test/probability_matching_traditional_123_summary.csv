@@ -1,0 +1,22 @@
+metric,value
+experiment_id,probability_matching_traditional_123
+total_steps,20
+successful_steps,9
+success_rate,0.450000
+improvements,1
+improvement_rate,0.050000
+total_reward,6068.491953
+avg_reward,303.424598
+original_fitness,1660648633
+best_fitness,273750
+improvement_pct,99.98
+llm_selections,0
+llm_successes,0
+llm_improvements,0
+llm_success_rate,0.000000
+traditional_selections,20
+traditional_successes,9
+traditional_improvements,1
+traditional_success_rate,0.450000
+runtime_ms,29280
+best_patch,"| gin.edit.matched.MatchedDeleteStatement ""Triangle.java"":46 |"

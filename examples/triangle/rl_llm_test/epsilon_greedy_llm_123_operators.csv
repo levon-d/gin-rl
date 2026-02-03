@@ -1,0 +1,3 @@
+operator,category,is_llm,selection_count,success_count,success_rate,improvement_count,improvement_rate,total_reward,avg_reward,learned_q
+LLMMaskedStatement,llm,true,3,2,0.666667,0,0.000000,1.989843,0.663281,0.663281
+LLMReplaceStatement,llm,true,2,2,1.000000,0,0.000000,1.987833,0.993917,0.993917

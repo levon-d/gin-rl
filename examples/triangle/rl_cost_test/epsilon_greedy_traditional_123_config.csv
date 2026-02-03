@@ -1,0 +1,11 @@
+key,value
+source_file,"Triangle.java"
+method_signature,"classifyTriangle(int,int,int)"
+class_name,"Triangle"
+seed,"123"
+num_steps,"5"
+rl_algorithm,"epsilon_greedy"
+operator_set,"traditional"
+num_operators,"11"
+epsilon,"0.2"
+original_fitness,"1662371378"

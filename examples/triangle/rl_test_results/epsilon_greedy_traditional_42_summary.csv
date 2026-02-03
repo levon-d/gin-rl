@@ -1,0 +1,22 @@
+metric,value
+experiment_id,epsilon_greedy_traditional_42
+total_steps,20
+successful_steps,13
+success_rate,0.650000
+improvements,1
+improvement_rate,0.050000
+total_reward,2737.727785
+avg_reward,136.886389
+original_fitness,1663506453
+best_fitness,607624
+improvement_pct,99.96
+llm_selections,0
+llm_successes,0
+llm_improvements,0
+llm_success_rate,0.000000
+traditional_selections,20
+traditional_successes,13
+traditional_improvements,1
+traditional_success_rate,0.650000
+runtime_ms,38656
+best_patch,"| gin.edit.statement.DeleteStatement ""Triangle.java"":46 |"

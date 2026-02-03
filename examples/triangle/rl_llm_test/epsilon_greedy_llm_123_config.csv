@@ -1,0 +1,13 @@
+key,value
+source_file,"Triangle.java"
+method_signature,"classifyTriangle(int,int,int)"
+class_name,"Triangle"
+seed,"123"
+num_steps,"5"
+rl_algorithm,"epsilon_greedy"
+operator_set,"llm"
+num_operators,"2"
+epsilon,"0.2"
+llm_model,"qwen3:8b"
+llm_prompt_type,"MEDIUM"
+original_fitness,"1653607146"
