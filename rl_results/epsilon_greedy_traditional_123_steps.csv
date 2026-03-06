@@ -1,0 +1,6 @@
+step,operator,category,is_llm,success,is_improvement,parent_fitness,child_fitness,reward,step_duration_ms,cumulative_time_ms,patch
+1,DeleteStatement,statement,false,false,false,1665890937,,0.000000,45,17085,"| gin.edit.statement.DeleteStatement ""examples/triangle/Triangle.java"":153 |"
+2,DeleteStatement,statement,false,false,false,1665890937,,0.000000,4,17089,"| gin.edit.statement.DeleteStatement ""examples/triangle/Triangle.java"":168 |"
+3,MoveStatement,statement,false,true,true,1665890937,1650608918,1.009258,1702,18794,"| gin.edit.statement.MoveStatement ""examples/triangle/Triangle.java"":49 -> ""examples/triangle/Triangle.java"":168:168 |"
+4,MoveStatement,statement,false,true,true,1650608918,1646178124,1.002692,1696,20490,"|"
+5,DeleteStatement,statement,false,false,false,1646178124,,0.000000,4,20494,"| gin.edit.statement.DeleteStatement ""examples/triangle/Triangle.java"":136 |"

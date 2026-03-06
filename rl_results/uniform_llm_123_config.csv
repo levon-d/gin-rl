@@ -1,0 +1,13 @@
+key,value
+source_file,"examples/triangle/Triangle.java"
+method_signature,"classifyTriangle(int,int,int)"
+class_name,"Triangle"
+seed,"123"
+num_steps,"5"
+rl_algorithm,"uniform"
+operator_set,"llm"
+num_operators,"2"
+fitness_type,"memory"
+llm_model,"qwen2.5-coder"
+llm_prompt_type,"MEDIUM"
+original_fitness,"0"
