@@ -1,0 +1,94 @@
+==============================================
+GIN-RL Experiment Runner
+==============================================
+Timestamp: 20260302_215536
+Repetitions: 3
+Steps per method: 100
+Results directory: /Users/levondavtyan/repos/gin-rl/experiment_results
+LLM Model: qwen2.5-coder (via Ollama)
+
+Select experiment to run:
+
+  Traditional Operators Only:
+    1) Experiment 1:  Random Sampling (baseline)
+    2) Experiment 2:  Local Search with UCB
+    3) Experiment 2B: Local Search with Uniform (baseline)
+
+  Including LLM Operators:
+    4) Experiment 3:  Local Search with UCB (all operators)
+    5) Experiment 3B: Local Search with Uniform (all operators)
+
+  Batch Runs:
+    t) All Traditional experiments (1, 2, 2B)
+    l) All LLM experiments (3, 3B)
+    a) ALL experiments
+
+  Info:
+    i) Show experiment information
+
+
+==============================================
+EXPERIMENT 1: Random Sampling (Baseline)
+==============================================
+Generates random patches and evaluates them.
+This is the baseline - what random search achieves.
+
+
+--- Repetition 1/3 ---
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Project directory, required: /Users/levondavtyan/repos/jcodec
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Method file, required: /Users/levondavtyan/repos/gin-rl/jcodec_method_file.csv
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Project name, required for maven and gradle projects: jcodec
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Classpath, required for non-maven and non-gradle projects: 
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Path to maven bin directory, e.g. /usr/local, required for maven projects: /opt/homebrew/Cellar/maven/3.9.9/libexec
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Output CSV file: /Users/levondavtyan/repos/gin-rl/experiment_results/exp1_random_rep1_20260302_215536.csv
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Output file for storing the execution time: sampler_timing.csv
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Timeout in milliseconds: 10000
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Repeat each test r times: 1
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Number of methods from the method data to sample from. 0 for all.: 0
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Run tests in a separate jvm: false
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Run every repetition in a new jvm. Includes option '-j': false
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Run every test in a new jvm. Includes options '-j' and '-jj': false
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Fail fast. If set to true, the tests will stop at the first failure and the next patch will be executed. You probably don't want to set this to true for Automatic Program Repair.: false
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: OpenAI API key for LLM edits: demo
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: OpenAI API model name for LLM edits; e.g. gpt-3.5-turbo or gpt-4; full list at https://github.com/langchain4j/langchain4j/blob/main/langchain4j-open-ai/src/main/java/dev/langchain4j/model/openai/OpenAiModelName.java: gpt-3.5-turbo
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: model type; OpenAI  or a name of an ollama model: OpenAI
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: model timeout in seconds: 30
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Prompt Type for LLM edits: MEDIUM
+2026-03-02 21:55:36 gin.util.Sampler.printCommandlineArguments() INFO: Prompt Template for LLM edits: 
+2026-03-02 21:55:36 gin.util.Sampler.setUp() INFO: Calculating classpath..
+[WARN] Maven will be executed in interactive mode, but no input stream has been configured for this MavenInvoker instance.
+2026-03-02 21:55:37 gin.util.Sampler.setUp() INFO: Classpath: /Users/levondavtyan/repos/jcodec/target/classes:/Users/levondavtyan/repos/jcodec/target/test-classes:/Users/levondavtyan/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/Users/levondavtyan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+2026-03-02 21:55:37 gin.util.RandomSampler.Setup() INFO: === LocalSearchSimple ===
+2026-03-02 21:55:37 gin.util.RandomSampler.Setup() INFO: LLM edits: false
+2026-03-02 21:55:37 gin.util.RandomSampler.Setup() INFO: None LLM edits: []
+2026-03-02 21:55:37 gin.util.RandomSampler.Setup() INFO: LLM edit: null
+2026-03-02 21:55:37 gin.util.RandomSampler.Setup() INFO: =====================================
+2026-03-02 21:55:37 gin.util.RandomSampler.printAdditionalArguments() INFO: Edit types: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:37 gin.util.RandomSampler.printAdditionalArguments() INFO: Number of edits per patch: 1
+2026-03-02 21:55:37 gin.util.RandomSampler.printAdditionalArguments() INFO: Number of patches: 100
+2026-03-02 21:55:37 gin.util.RandomSampler.printAdditionalArguments() INFO: Random seed for method selection: 1223
+2026-03-02 21:55:37 gin.util.RandomSampler.printAdditionalArguments() INFO: Random seed for edit type selection: 1123
+2026-03-02 21:55:37 gin.util.RandomSampler.sampleMethodsHook() INFO: Start applying and testing random patches..
+2026-03-02 21:55:37 gin.util.RandomSampler.sampleMethodsHook() INFO: Number of patch: 100
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.statement.SwapStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":1567 <-> "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":1603 | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.invDC4x4(int[]) with ID 5
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.modifynode.BinaryOperatorReplacement  "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":2233 GREATER_EQUALS -> LESS | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.dequantizeAC(int[],int,int[]) with ID 3
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.statement.CopyStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":3971 -> "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":2445:2445 | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.quantizeAC(int[],int) with ID 4
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.matched.MatchedDeleteStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":2508 | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.quantizeAC(int[],int) with ID 4
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.matched.MatchedReplaceStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":3824 -> "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":208 | for method: org.jcodec.codecs.h264.H264Utils.org.jcodec.codecs.h264.H264Utils.nextNALUnit(ByteBuffer) with ID 9
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.modifynode.UnaryOperatorReplacement  "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":2203 POSTFIX_INCREMENT -> POSTFIX_DECREMENT | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.dequantizeAC(int[],int,int[]) with ID 3
+2026-03-02 21:55:38 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:38 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.matched.MatchedSwapStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":2028 <-> "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":1120 | for method: org.jcodec.codecs.h264.H264Utils.org.jcodec.codecs.h264.H264Utils.escapeNAL(ByteBuffer,ByteBuffer) with ID 8
+2026-03-02 21:55:39 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:39 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.statement.CopyStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":2532 -> "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":1111:1120 | for method: org.jcodec.codecs.h264.H264Utils.org.jcodec.codecs.h264.H264Utils.escapeNAL(ByteBuffer,ByteBuffer) with ID 8
+2026-03-02 21:55:39 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:39 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.matched.MatchedDeleteStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":1240 | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.fdct4x4(int[]) with ID 2
+2026-03-02 21:55:39 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:39 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.matched.MatchedReplaceStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":1924 -> "../jcodec/src/main/java/org/jcodec/codecs/h264/decode/CoeffTransformer.java":1482 | for method: org.jcodec.codecs.h264.decode.CoeffTransformer.org.jcodec.codecs.h264.decode.CoeffTransformer.fdct4x4(int[]) with ID 2
+2026-03-02 21:55:39 gin.Patch.randomEdit() INFO: Choosing an edit type from: [class gin.edit.statement.DeleteStatement, class gin.edit.statement.CopyStatement, class gin.edit.statement.ReplaceStatement, class gin.edit.statement.SwapStatement, class gin.edit.matched.MatchedDeleteStatement, class gin.edit.matched.MatchedCopyStatement, class gin.edit.matched.MatchedReplaceStatement, class gin.edit.matched.MatchedSwapStatement, class gin.edit.modifynode.BinaryOperatorReplacement, class gin.edit.modifynode.UnaryOperatorReplacement]
+2026-03-02 21:55:39 gin.util.RandomSampler.sampleMethodsHook() INFO: Testing random patch | gin.edit.matched.MatchedDeleteStatement "../jcodec/src/main/java/org/jcodec/codecs/h264/H264Utils.java":403 | for method: org.jcodec.codecs.h264.H264Utils.org.jcodec.codecs.h264.H264Utils.gotoNALUnit(ByteBuffer) with ID 10
